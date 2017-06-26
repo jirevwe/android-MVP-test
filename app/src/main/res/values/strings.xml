@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">NoteTaker</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_view_note">Note</string>
+    <string name="long_text">You’ve certainly received the emails: There is a prince with $1 million dollars, and he wants to give it to you. Or perhaps it’s an astronaut or a military leader. Regardless of the tall tale, one part remains the same: All that’s required is a little cash up front for you to see a windfall later. The grift, technically known as the advance fee fraud, predates email, but the electronic version has become indelibly associated with Nigeria–one-fifth of all the reported scams originated from the country in 2014–and other cybercrime is popular as well.</string>
+    <string name="note_title">Title</string>
 </resources>

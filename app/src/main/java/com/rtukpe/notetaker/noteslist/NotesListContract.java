@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by rtukpe on 25/06/2017.
  */
 
-public interface NoteContract {
+public interface NotesListContract {
 
     interface View extends BaseView<Presenter> {
 

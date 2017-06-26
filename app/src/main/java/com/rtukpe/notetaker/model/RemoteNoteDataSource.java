@@ -1,7 +1,6 @@
 package com.rtukpe.notetaker.model;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -75,10 +74,10 @@ public class RemoteNoteDataSource implements DataSource {
                 if (!response.isSuccessful()){
                     callback.onDataNotAvailable();
                 }
-                Log.d("Response", "onResponse: " + response.body().string());
+                String data = response.body().string();
 
                 Gson gson = new Gson();
-                Note note = gson.fromJson(response.body().string(), Note.class);
+                Note note = gson.fromJson(data, Note.class);
                 callback.onNoteLoaded(note);
             }
         });

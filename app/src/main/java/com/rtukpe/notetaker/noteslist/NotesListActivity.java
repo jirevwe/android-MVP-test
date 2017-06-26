@@ -1,5 +1,6 @@
 package com.rtukpe.notetaker.noteslist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,15 +15,18 @@ import android.view.View;
 import com.rtukpe.notetaker.R;
 import com.rtukpe.notetaker.model.Note;
 import com.rtukpe.notetaker.model.RemoteNoteDataSource;
+import com.rtukpe.notetaker.viewnotes.ViewNoteActivity;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NotesListActivity extends AppCompatActivity implements NoteContract.View {
+public class NotesListActivity extends AppCompatActivity implements NotesListContract.View {
 
-    NoteContract.Presenter presenter;
+    public static String NOTE_ID = "com.rtukpe.notetaker.noteslist.NotesListActivity.NOTE_ID";
+
+    NotesListContract.Presenter presenter;
 
     @BindView(R.id.notesListView)
     RecyclerView notesRecyclerView;
@@ -34,6 +38,7 @@ public class NotesListActivity extends AppCompatActivity implements NoteContract
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    private NotesListAdapter notesListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,7 @@ public class NotesListActivity extends AppCompatActivity implements NoteContract
 
         remoteNoteDataSource = new RemoteNoteDataSource();
 
-        presenter = new NotePresenter(remoteNoteDataSource, this);
+        presenter = new NotesListPresenter(remoteNoteDataSource, this);
 
         presenter.populateNote();
 
@@ -80,16 +85,22 @@ public class NotesListActivity extends AppCompatActivity implements NoteContract
     }
 
     @Override
-    public void setPresenter(NoteContract.Presenter mPresenter) {
+    public void setPresenter(NotesListContract.Presenter mPresenter) {
         presenter = mPresenter;
     }
 
     @Override
     public void setNotes(ArrayList<Note> notes) {
-        NotesAdapter notesAdapter = new NotesAdapter(notes);
+        notesListAdapter = new NotesListAdapter(notes, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
-        notesRecyclerView.setAdapter(notesAdapter);
+        notesRecyclerView.setAdapter(notesListAdapter);
         notesRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    public void onItemClick(int position){
+        Intent intent = new Intent(this, ViewNoteActivity.class);
+        intent.putExtra(NOTE_ID, notesListAdapter.getItemAtPosition(position).getId());
+        startActivity(intent);
     }
 }
