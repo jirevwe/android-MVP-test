@@ -27,8 +27,9 @@ public class NotesListPresenter implements NotesListContract.Presenter, RemoteNo
     }
 
     @Override
-    public void onNotesLoaded(ArrayList<Note> notes) {
+    public boolean onNotesLoaded(ArrayList<Note> notes) {
         view.setNotes(notes);
+        return notes != null;
     }
 
     @Override

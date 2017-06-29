@@ -12,7 +12,7 @@ public interface DataSource {
 
     interface LoadNotesCallback {
 
-        void onNotesLoaded(ArrayList<Note> tasks);
+        boolean onNotesLoaded(ArrayList<Note> tasks);
 
         void onDataNotAvailable();
     }

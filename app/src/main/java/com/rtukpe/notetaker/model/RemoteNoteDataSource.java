@@ -22,6 +22,7 @@ import okhttp3.Response;
 public class RemoteNoteDataSource implements DataSource {
 
     private static RemoteNoteDataSource INSTANCE;
+    private OkHttpClient client = new OkHttpClient();
 
     public static RemoteNoteDataSource getInstance() {
         if (INSTANCE == null) {
@@ -32,7 +33,6 @@ public class RemoteNoteDataSource implements DataSource {
 
     @Override
     public void getNotes(@NonNull final LoadNotesCallback callback) {
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("http://10.0.2.2:3000/notes")
                 .build();
@@ -60,7 +60,6 @@ public class RemoteNoteDataSource implements DataSource {
 
     @Override
     public void getNote(int noteId, @NonNull final GetNoteCallback callback) {
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("http://10.0.2.2:3000/notes/" + noteId)
                 .build();

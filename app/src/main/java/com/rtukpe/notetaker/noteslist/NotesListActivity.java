@@ -46,7 +46,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesListCon
         setContentView(R.layout.activity_notes_list);
         ButterKnife.bind(this);
 
-        remoteNoteDataSource = new RemoteNoteDataSource();
+        remoteNoteDataSource = RemoteNoteDataSource.getInstance();
 
         presenter = new NotesListPresenter(remoteNoteDataSource, this);
 

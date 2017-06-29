@@ -8,12 +8,12 @@ import com.rtukpe.notetaker.model.RemoteNoteDataSource;
  * Created by rtukpe on 26/06/2017.
  */
 
-class ViewNotePresenter implements ViewNoteContract.Presenter, DataSource.GetNoteCallback {
+public class ViewNotePresenter implements ViewNoteContract.Presenter, DataSource.GetNoteCallback {
 
     private RemoteNoteDataSource remoteNoteDataSource;
     private ViewNoteContract.View view;
 
-    ViewNotePresenter(RemoteNoteDataSource mRemoteNoteDataSource, ViewNoteContract.View mView){
+    public ViewNotePresenter(RemoteNoteDataSource mRemoteNoteDataSource, ViewNoteContract.View mView){
         remoteNoteDataSource = mRemoteNoteDataSource;
         view = mView;
     }

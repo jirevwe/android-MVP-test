@@ -32,7 +32,7 @@ public class ViewNoteActivity extends AppCompatActivity implements ViewNoteContr
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        remoteNoteDataSource = new RemoteNoteDataSource();
+        remoteNoteDataSource = RemoteNoteDataSource.getInstance();
         presenter = new ViewNotePresenter(remoteNoteDataSource, this);
 
         int noteid = getIntent().getIntExtra(NotesListActivity.NOTE_ID, 0);
